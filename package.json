@@ -1,0 +1,26 @@
+{
+  "name": "rocketonnode",
+  "version": "1.0.0",
+  "description": "Rocket Website",
+  "main": "NodeRequest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dondong1/RocketOnNode.git"
+  },
+  "keywords": [
+    "Rocket",
+    "Node"
+  ],
+  "author": "Don Dong Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dondong1/RocketOnNode/issues"
+  },
+  "homepage": "https://github.com/dondong1/RocketOnNode#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
