@@ -194,6 +194,5 @@
     });
 
     
-    
-    
+    module.exports = {recommended, unitCost, installationCost}
     
