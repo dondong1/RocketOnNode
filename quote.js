@@ -152,6 +152,48 @@
     // alert("Please choose your Building Type + Elevator Type, for others only enter positive number");
     // return;
     //  }
+    function calculateRecommended() {
+      // COMMERCIAL
+      if (selectedBuildingType === "commercial") {
+        values.recommended = values.elevators;
+        recommendedElevatorsInput.value = values.recommended;
+      }
+    
+      // RESIDENTIAL
+      if (selectedBuildingType === "residential") {
+        if (values.apartments <= 0 || values.floors <= 0) return;
+    
+        let doorsPerFloor = Math.ceil(values.apartments / values.floors);
+        let elevatorShaftsNeeded = Math.ceil(doorsPerFloor / 6); //<== require an elevator shaft for every 6 apartments
+        let columnsRequired = Math.ceil(values.floors / 20); //<== every 20 floors requires an additional column
+        values.recommended = columnsRequired * elevatorShaftsNeeded;
+        recommendedElevatorsInput.value = values.recommended;
+      }
+      
+      // CORPORATE/HYBRID
+      if (selectedBuildingType === "corporate" || selectedBuildingType === "hybrid") {
+        if (values.floors <= 0 || values.basements <= 0 || values.occupants <= 0) return;
+    
+        let totalOccupants = values.occupants * (values.floors + values.basements);
+        let elevatorShaftsNeeded = Math.ceil(totalOccupants / 1000);
+        let columnsRequired = Math.ceil((values.floors + values.basements) / 20); //<== every 20 floors requires an additional column
+        let elevatorsPerColumn = Math.ceil(elevatorShaftsNeeded / columnsRequired);
+        values.recommended = columnsRequired * elevatorsPerColumn;
+        recommendedElevatorsInput.value = values.recommended;
+      }
+    }
+    
+    function formatPrice(amount) {
+      return `$${Number(amount).toLocaleString()}`;
+    }
 
+    $(document).ready(function(){
+      $("button").click(function(){
+        $.ajax({url: "NodeRequest.js", dataType: "script"});
+      });
+    });
+
+    
+    
     
     
